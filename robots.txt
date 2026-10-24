@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sneeider11.github.io/chivera-la-12/sitemap.xml

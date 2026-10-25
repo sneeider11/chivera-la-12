@@ -58,6 +58,7 @@
 </header>
 
 <nav class="menu wrap">
+  <a href="#pide">Pide tu pieza</a>
   <a href="#modelos">Modelos</a>
   <a href="#piezas">Piezas y precios</a>
   <a href="#envios">Envíos</a>
@@ -94,6 +95,26 @@
       <li><a href="repuestos-montero-daihatsu-mazda.html"><strong>Mazda</strong></a> camperos y camionetas antiguas</li>
     </ul>
     <p class="nota">Tenemos motores de todos estos modelos. Si no ves tu campero, escríbenos igual.</p>
+  </section>
+
+  <section id="pide">
+    <h2>Pide tu pieza</h2>
+    <p>Llena esto y te abre WhatsApp con el mensaje listo. Te respondemos con precio y foto de la pieza real.</p>
+    <form class="pide" onsubmit="return pedirPieza(this)">
+      <label>Campero
+        <select name="modelo" required>
+          <option value="">Escoge…</option>
+          <option>Toyota Land Cruiser</option><option>Nissan Patrol</option><option>Chevrolet / Suzuki Samurai</option>
+          <option>Jeep Willys</option><option>Mitsubishi Montero</option><option>Daihatsu</option>
+          <option>Chevrolet LUV</option><option>Mazda</option><option>Otro</option>
+        </select></label>
+      <label>Año o versión <input name="anio" placeholder="Ej: FJ40 1978, LUV 2300"></label>
+      <label>Motor <input name="motor" placeholder="Ej: 2F, RD28 (si lo sabes)"></label>
+      <label>¿Qué pieza necesitas? <input name="pieza" required placeholder="Ej: caja transfer, puerta trasera"></label>
+      <label>Ciudad de envío <input name="ciudad" placeholder="Ej: Cúcuta"></label>
+      <button class="btn wa" type="submit">Enviar por WhatsApp</button>
+    </form>
+    <p class="nota">Para no equivocarnos: después mándanos por WhatsApp una foto de tu pieza vieja o de la tarjeta de propiedad.</p>
   </section>
 
   <section id="piezas">
@@ -141,5 +162,15 @@
   <div class="wrap">Chivera la 12 · Repuestos usados para camperos · Bucaramanga, Colombia</div>
 </footer>
 <a class="flotante" href="https://wa.me/573156417309?text=Hola%2C%20vengo%20de%20la%20p%C3%A1gina%20web." aria-label="Escribir por WhatsApp" rel="nofollow">WhatsApp</a>
+<script>
+function pedirPieza(f) {
+  var d = new FormData(f), l = ["Hola Chivera la 12, vengo de la página web. Busco una pieza:"];
+  [["modelo","Campero"],["anio","Año/versión"],["motor","Motor"],["pieza","Pieza"],["ciudad","Ciudad de envío"]].forEach(function (c) {
+    var v = (d.get(c[0]) || "").trim(); if (v) l.push(c[1] + ": " + v);
+  });
+  window.open("https://wa.me/573156417309?text=" + encodeURIComponent(l.join("\n")), "_blank");
+  return false;
+}
+</script>
 </body>
 </html>
